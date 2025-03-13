@@ -52,9 +52,16 @@ public class Basic {
         }
 
         // Implementing MyHashTable
-        MyHashTable tbl = new MyHashTable(5);
-        tbl.put(1, "Sammsul Hoque");
-        tbl.put(2, "Bob Dylan");
-        System.out.println(tbl.get(1));
+        MyHashTable myHashTable = new MyHashTable();
+        myHashTable.put(1, "Apple");
+        myHashTable.put(2, "Orange");
+        myHashTable.put(3, "Banana");
+        myHashTable.put(4, "Guava");
+        myHashTable.put(5, "Muskmelon");
+        myHashTable.put(6, "Watermelon");
+        System.out.println(myHashTable.get(1));
+        System.out.println(myHashTable.get(6));
+        myHashTable.remove(5);
+        System.out.println(myHashTable.get(5));
     }
 }
