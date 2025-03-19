@@ -3,39 +3,32 @@ package avltrees;
 public class MyAVLTree {
     private class AVLNode {
         private int value;
-        private AVLNode leftChild;
-        private AVLNode rightChild;
+        private AVLNode leftChild, rightChild;
 
-        public AVLNode(int item) {
-            this.value = item;
+        public AVLNode(int value) {
+            this.value = value;
         }
 
         @Override
         public String toString() {
-            return "Node=" + value;
+            return "Node=" + this.value;
         }
     }
     private AVLNode root;
 
-    public void insert(int newItem) {
-        root = insert(root, newItem);
+    public void insert(int value) {
+        root = insert(root, value);
     }
 
-    private AVLNode insert(AVLNode node, int newItem) {
-        var newNode = new AVLNode(newItem);
+    private AVLNode insert(AVLNode node, int value) {
         if (node == null)
-            return newNode;
+            return new AVLNode(value);
 
-        if (newItem < node.value) {
-            node.leftChild = insert(node.leftChild, newItem);
-        } else {
-            node.rightChild = insert(node.rightChild, newItem);
-        }
+        if (value < node.value)
+            node.leftChild = insert(node.leftChild, value);
+        else
+            node.rightChild = insert(node.rightChild, value);
 
-        return root;
-    }
-
-    private boolean isEmpty(AVLNode node) {
-        return node.leftChild == null && node.rightChild == null;
+        return node;
     }
 }
