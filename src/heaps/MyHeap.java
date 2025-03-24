@@ -19,17 +19,22 @@ public class MyHeap {
         bubbleUp();
     }
 
-    public void remove() {
+    public int remove() {
         if (isEmpty())
             throw new IllegalStateException();
 
+        var removedItem = items[0];
         items[0] = items[--size];
         bubbleDown();
+
+        return removedItem;
     }
 
     public boolean isFull() {
         return size == items.length;
     }
+
+    public int max() { return items[0]; }
 
     private boolean isEmpty() {
         return size == 0;
@@ -47,18 +52,23 @@ public class MyHeap {
     private void bubbleDown() {
         var rootIndex = 0;
         while (rootIndex <= size && items[rootIndex] < items[leftChildIndex(rootIndex)] && rootIndex < items[rightChildIndex(rootIndex)]) {
-            var largerChildIndex = items[leftChildIndex(rootIndex)] > items[rightChildIndex(rootIndex)]
-                    ? leftChildIndex(rootIndex)
-                    : rightChildIndex(rootIndex);
+            var largerChildIndex = largerChildrenIndex(rootIndex);
             swap(rootIndex, largerChildIndex);
 
             rootIndex = largerChildIndex;
         }
     }
 
-    @Override
-    public String toString() {
-        return Arrays.toString(items);
+    private int largerChildrenIndex(int rootIndex) {
+        if (!hasLeftChild(rootIndex))
+            return rootIndex;
+
+        if (!hasRightChild(rootIndex))
+            return leftChildIndex(rootIndex);
+
+        return items[leftChildIndex(rootIndex)] > items[rightChildIndex(rootIndex)]
+                ? leftChildIndex(rootIndex)
+                : rightChildIndex(rootIndex);
     }
 
     private void swap(int a, int b) {
@@ -77,5 +87,18 @@ public class MyHeap {
 
     private int rightChildIndex(int index) {
         return index * 2 + 2;
+    }
+
+    private boolean hasLeftChild(int index) {
+        return leftChildIndex(index) <= size;
+    }
+
+    private boolean hasRightChild(int index) {
+        return rightChildIndex(index) <= size;
+    }
+
+    @Override
+    public String toString() {
+        return Arrays.toString(items);
     }
 }
