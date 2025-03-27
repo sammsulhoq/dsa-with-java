@@ -6,5 +6,8 @@ public class Basic {
         trie.insert("cat");
         trie.insert("bat");
         trie.insert("bag");
+        System.out.println(trie.contains("bata"));
+
+        trie.traverse();
     }
 }
