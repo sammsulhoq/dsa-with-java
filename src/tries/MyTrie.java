@@ -36,6 +36,10 @@ public class MyTrie {
         public Node[] getChildren() {
             return children.values().toArray(new Node[0]);
         }
+
+        public boolean hasChildren() { return !children.isEmpty(); }
+
+        public void removeChild(char ch) { children.remove(ch); }
     }
     private Node root = new Node(' ');
 
@@ -70,6 +74,13 @@ public class MyTrie {
         traverse(root);
     }
 
+    public void remove(String word) {
+        remove(root, word, 0);
+    }
+
+    /*
+    * For traversing Trie pre-order traversal is used
+    */
     private void traverse(Node root) {
         if (root == null)
             return;
@@ -77,5 +88,26 @@ public class MyTrie {
         System.out.println(root.value);
         for (Node node: root.getChildren())
             traverse(node);
+    }
+
+    /*
+    * For removal use post-order traversal and set isEndOfWord = false
+    */
+    private void remove(Node root, String word, int index) {
+        if (index == word.length()) {
+            root.isEndOfWord = false;
+            return;
+        }
+
+        char ch = word.charAt(index);
+        Node child = root.getChild(ch);
+        if (child == null)
+            return;
+
+        remove(child, word, index + 1);
+
+        if (!child.hasChildren() && !child.isEndOfWord) {
+            root.removeChild(ch);
+        }
     }
 }

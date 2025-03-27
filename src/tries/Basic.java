@@ -9,5 +9,9 @@ public class Basic {
         System.out.println(trie.contains("bata"));
 
         trie.traverse();
+
+        trie.remove("cat");
+
+        trie.traverse();
     }
 }
