@@ -136,7 +136,7 @@ public class MyTrie {
     private Node findLastNodeOf(String prefix) {
         if (prefix == null)
             return  null;
-        
+
         var current = root;
         for (char ch: prefix.toCharArray()) {
             var child = current.getChild(ch);
