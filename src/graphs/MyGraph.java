@@ -1,9 +1,7 @@
 package graphs;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.HashMap;
+import java.sql.SQLOutput;
+import java.util.*;
 
 public class MyGraph {
     private class Node {
@@ -11,6 +9,11 @@ public class MyGraph {
 
         public Node(String label) {
             this.label = label;
+        }
+
+        @Override
+        public String toString() {
+            return label;
         }
     }
     private Map<String, Node> nodes = new HashMap<>();
@@ -22,10 +25,6 @@ public class MyGraph {
         adjacencyList.putIfAbsent(newNode, new ArrayList<>());
     }
 
-    public void removeNode(String label) {
-
-    }
-
     public void addEdge(String from, String to) {
         var fromNode = nodes.get(from);
         if (fromNode == null)
@@ -35,9 +34,11 @@ public class MyGraph {
         if (toNode == null)
             throw  new IllegalArgumentException();
 
-        var existingList = adjacencyList.get(fromNode);
-        existingList.add(toNode);
-        adjacencyList.putIfAbsent(fromNode, existingList);
+        adjacencyList.get(fromNode).add(toNode);
+    }
+
+    public void removeNode(String label) {
+
     }
 
     public void removeEdge(String from, String to) {
@@ -45,6 +46,8 @@ public class MyGraph {
     }
 
     public void print() {
-
+        for(var entry: adjacencyList.entrySet()) {
+            System.out.println(entry.getKey() + " is connected to " + Arrays.toString(entry.getValue().toArray()));
+        }
     }
 }
