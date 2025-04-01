@@ -12,5 +12,11 @@ public class Basic {
         directedGraph.addEdge("B", "C");
 
         directedGraph.print();
+
+        directedGraph.removeEdge("A", "C");
+        directedGraph.print();
+
+        directedGraph.removeNode("B");
+        directedGraph.print();
     }
 }
