@@ -65,6 +65,30 @@ public class MyGraph {
         }
     }
 
+    public void traverseDepthFirstIteratively(String label) {
+        Stack<Node> stack = new Stack<>();
+        Set<Node> visited = new HashSet<>();
+
+        var root = nodes.get(label);
+        if (root == null)
+            return;
+
+        stack.push(root);
+
+        while(!stack.isEmpty()) {
+            var current = stack.pop();
+            if (visited.contains(current))
+                continue;
+
+            System.out.println(current);
+            visited.add(current);
+
+            for (var node: adjacencyList.get(current))
+                if (!visited.contains(node))
+                    stack.push(node);
+        }
+    }
+
     public void traverseDepthFirst(String label) {
         traverseDepthFirst(nodes.get(label), new HashSet<>());
     }
