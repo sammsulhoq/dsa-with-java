@@ -65,6 +65,23 @@ public class MyGraph {
         }
     }
 
+    public boolean hasCycle() {
+        Set<Node> all = new HashSet<>();
+        all.addAll(nodes.values());
+
+        Set<Node> visiting = new HashSet<>();
+        Set<Node> visited = new HashSet<>();
+
+        while (!all.isEmpty()) {
+            var current = all.iterator().next();
+            var result = hasCycle(current, all, visiting, visited);
+            if (result)
+                return true;
+        }
+
+        return false;
+    }
+
     public void traverseBreadthFirstIteratively(String label) {
         var root = nodes.get(label);
         if (root == null)
@@ -116,6 +133,34 @@ public class MyGraph {
         traverseDepthFirst(nodes.get(label), new HashSet<>());
     }
 
+    public List<String> topologicalSort() {
+        List<String> result = new ArrayList<>();
+        Stack<Node> stack = new Stack<>();
+        Set<Node> visited = new HashSet<>();
+
+        for (var node: nodes.values())
+            topologicalSort(node, visited, stack);
+
+        while(!stack.isEmpty()) {
+            var current = stack.pop();
+            result.add(current.label);
+        }
+
+        return result;
+    }
+
+    private void topologicalSort(Node node, Set<Node> visited, Stack<Node> stack) {
+        if (node == null || visited.contains(node))
+            return;
+
+        visited.add(node);
+
+        for (var n: adjacencyList.get(node))
+            topologicalSort(n, visited, stack);
+
+        stack.push(node);
+    }
+
     private void traverseDepthFirst(Node root, Set<Node> visited) {
         if (root == null)
             return;
@@ -126,5 +171,27 @@ public class MyGraph {
         for (var node: adjacencyList.get(root))
             if (!visited.contains(node))
                 traverseDepthFirst(node, visited);
+    }
+
+    private boolean hasCycle(Node node, Set<Node> all, Set<Node> visiting, Set<Node> visited) {
+        all.remove(node);
+        visited.add(node);
+
+        for (var n: adjacencyList.get(node)){
+            if (visited.contains(n))
+                continue;
+
+            if (visited.contains(n))
+                return true;
+
+            var result = hasCycle(n, all, visiting, visited);
+            if (result)
+                return true;
+        }
+
+        visiting.remove(node);
+        visited.add(node);
+
+        return false;
     }
 }
