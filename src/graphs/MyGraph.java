@@ -64,4 +64,20 @@ public class MyGraph {
             System.out.println(entry.getKey() + " is connected to " + Arrays.toString(entry.getValue().toArray()));
         }
     }
+
+    public void traverseDepthFirst(String label) {
+        traverseDepthFirst(nodes.get(label), new HashSet<>());
+    }
+
+    private void traverseDepthFirst(Node root, Set<Node> visited) {
+        if (root == null)
+            return;
+
+        System.out.println(root);
+        visited.add(root);
+
+        for (var node: adjacencyList.get(root))
+            if (!visited.contains(node))
+                traverseDepthFirst(node, visited);
+    }
 }
