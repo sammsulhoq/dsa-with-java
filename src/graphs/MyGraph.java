@@ -65,6 +65,29 @@ public class MyGraph {
         }
     }
 
+    public void traverseBreadthFirstIteratively(String label) {
+        var root = nodes.get(label);
+        if (root == null)
+            return;
+
+        Queue<Node> queue = new ArrayDeque<>();
+        Set<Node> visited = new HashSet<>();
+
+        queue.add(root);
+        while (!queue.isEmpty()) {
+            var current = queue.remove();
+            if (visited.contains(current))
+                continue;
+
+            System.out.println(current.label);
+            visited.add(current);
+
+            for (var node: adjacencyList.get(current))
+                if (!visited.contains(current))
+                    queue.add(node);
+        }
+    }
+
     public void traverseDepthFirstIteratively(String label) {
         Stack<Node> stack = new Stack<>();
         Set<Node> visited = new HashSet<>();

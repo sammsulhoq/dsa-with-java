@@ -19,6 +19,9 @@ public class Basic {
         // Testing DFS iteratively
         directedGraph.traverseDepthFirstIteratively("A");
 
+        // Testing Breadth First traversal
+        directedGraph.traverseBreadthFirstIteratively("A");
+
         directedGraph.removeEdge("A", "C");
         directedGraph.print();
 
