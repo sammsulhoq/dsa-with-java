@@ -54,12 +54,8 @@ public class MyWeightedGraph {
         if (toNode == null)
             throw new IllegalArgumentException();
 
-        var edge = new Edge(fromNode, toNode, weight);
-        adjacencyList.putIfAbsent(fromNode, new ArrayList<>());
-        adjacencyList.putIfAbsent(toNode, new ArrayList<>());
-
-        adjacencyList.get(fromNode).add(edge);
-        adjacencyList.get(toNode).add(edge);
+        adjacencyList.get(fromNode).add(new Edge(fromNode, toNode, weight));
+        adjacencyList.get(toNode).add(new Edge(toNode, fromNode, weight));
     }
 
     public void print() {
