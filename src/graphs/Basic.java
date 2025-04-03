@@ -36,5 +36,20 @@ public class Basic {
         System.out.println(Arrays.toString(directedGraph.topologicalSort().toArray()));
 
         System.out.println(directedGraph.hasCycle());
+
+        System.out.println("\n******\nWeighted Graph\n******\n");
+        MyWeightedGraph weightedGraph = new MyWeightedGraph();
+        weightedGraph.addNode("A");
+        weightedGraph.addNode("B");
+        weightedGraph.addNode("C");
+        weightedGraph.addNode("D");
+
+        weightedGraph.addEdge("A", "B", 3);
+        weightedGraph.addEdge("A", "C", 4);
+        weightedGraph.addEdge("A", "D", 2);
+        weightedGraph.addEdge("B", "D", 6);
+        weightedGraph.addEdge("C", "D", 1);
+
+        weightedGraph.print();
     }
 }
