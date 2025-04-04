@@ -5,9 +5,18 @@ import java.util.*;
 public class MyWeightedGraph {
     private class Node {
         private String label;
+        private List<Edge> edges = new ArrayList<>();
 
         public Node(String label) {
             this.label = label;
+        }
+
+        public void addEdge(Node to, int weight) {
+            edges.add(new Edge(this, to, weight));
+        }
+
+        private List<Edge> getEdges() {
+            return edges;
         }
 
         @Override
@@ -32,17 +41,14 @@ public class MyWeightedGraph {
         }
     }
     private Map<String, Node> nodes;
-    private Map<Node, List<Edge>> adjacencyList;
 
     public MyWeightedGraph() {
         nodes = new HashMap<>();
-        adjacencyList = new HashMap<>();
     }
 
     public void addNode(String label) {
         var node = new Node(label);
         nodes.putIfAbsent(label, node);
-        adjacencyList.putIfAbsent(node, new ArrayList<>());
     }
 
     public void addEdge(String from, String to, int weight) {
@@ -54,13 +60,13 @@ public class MyWeightedGraph {
         if (toNode == null)
             throw new IllegalArgumentException();
 
-        adjacencyList.get(fromNode).add(new Edge(fromNode, toNode, weight));
-        adjacencyList.get(toNode).add(new Edge(toNode, fromNode, weight));
+        fromNode.addEdge(toNode, weight);
+        toNode.addEdge(fromNode, weight);
     }
 
     public void print() {
-        for(var entry: adjacencyList.entrySet()) {
-            System.out.println(entry.getKey() + " is connected to " + Arrays.toString(entry.getValue().toArray()));
+        for (var node: nodes.values()){
+            System.out.println(node + " is connected to " + Arrays.toString(node.getEdges().toArray(new Edge[0])));
         }
     }
 }
