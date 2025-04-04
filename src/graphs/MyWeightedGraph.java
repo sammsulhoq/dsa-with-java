@@ -80,15 +80,23 @@ public class MyWeightedGraph {
      * @param to   Destination
      * @return Shortest distance between two nodes
      */
-    public int getShortestDistance(String from, String to) {
+    public Path getShortestPath(String from, String to) {
         var fromNode = nodes.get(from);
+        if (fromNode == null)
+            throw new IllegalArgumentException();
 
+        var toNode = nodes.get(to);
+        if (toNode == null)
+            throw new IllegalArgumentException();
+
+        // Populating the distances for each of the node to MAX
         Map<Node, Integer> distances = new HashMap<>();
         for (var node: nodes.values())
             distances.put(node, Integer.MAX_VALUE);
         distances.replace(fromNode, 0);          // Setting the distance for the source node to 0
 
         Set<Node> visited = new HashSet<>();
+        Map<Node, Node> previousNodes = new HashMap<>();
 
         PriorityQueue<NodeEntry> priorityQueue = new PriorityQueue<>(Comparator.comparingInt(ne -> ne.priority));
         priorityQueue.add(new NodeEntry(fromNode, 0));
@@ -104,17 +112,35 @@ public class MyWeightedGraph {
                 var newDistance = distances.get(edge.to) + edge.weight;
                 if (newDistance < distances.get(edge.to)) {
                     distances.replace(edge.to, newDistance);
+                    previousNodes.put(edge.to, current);            // Updating the previous node
                     priorityQueue.add(new NodeEntry(edge.to, newDistance));
                 }
             }
         }
 
-        return distances.get(nodes.get(to));
+        return buildPath(previousNodes, toNode);
     }
 
     public void print() {
         for (var node: nodes.values()){
             System.out.println(node + " is connected to " + Arrays.toString(node.getEdges().toArray(new Edge[0])));
         }
+    }
+
+    private Path buildPath(Map<Node, Node> previousNodes, Node toNode) {
+        Stack<Node> stack = new Stack<>();
+        stack.push(toNode);
+        var previous = previousNodes.get(toNode);
+        while (previous != null) {
+            stack.push(previous);
+            previous = previousNodes.get(previous);
+        }
+
+        var path = new Path();
+        while (!stack.isEmpty()) {
+            path.add(stack.pop().label);
+        }
+
+        return path;
     }
 }

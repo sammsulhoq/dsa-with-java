@@ -52,6 +52,7 @@ public class Basic {
 
         weightedGraph.print();
 
-        System.out.println("Shortest distance from A to C: " + weightedGraph.getShortestDistance("A", "C"));
+//        System.out.println("Shortest distance from A to C: " + weightedGraph.getShortestDistance("A", "C"));
+        System.out.println(weightedGraph.getShortestPath("A", "C"));
     }
 }
