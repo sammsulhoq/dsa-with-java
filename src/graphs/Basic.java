@@ -54,5 +54,9 @@ public class Basic {
 
 //        System.out.println("Shortest distance from A to C: " + weightedGraph.getShortestDistance("A", "C"));
         System.out.println(weightedGraph.getShortestPath("A", "C"));
+
+        System.out.println(weightedGraph.hasCycle());
+        System.out.println("Minimum Spanning Tree: ");
+        weightedGraph.getMinimumSpanningTree().print();
     }
 }

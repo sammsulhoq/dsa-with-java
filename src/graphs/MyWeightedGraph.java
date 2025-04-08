@@ -121,10 +121,75 @@ public class MyWeightedGraph {
         return buildPath(previousNodes, toNode);
     }
 
+    public MyWeightedGraph getMinimumSpanningTree() {
+        var tree = new MyWeightedGraph();
+        if (nodes.isEmpty())
+            return tree;
+
+        PriorityQueue<Edge> edges = new PriorityQueue<>(Comparator.comparingInt(e -> e.weight));
+
+        var startNode = nodes.values().iterator().next();
+        edges.addAll(startNode.getEdges());
+        tree.addNode(startNode.label);
+
+        if (edges.isEmpty())
+            return tree;
+
+        while (tree.nodes.size() < nodes.size()) {
+            var minEdge = edges.remove();
+            var nextNode = minEdge.to;
+
+            if (tree.containsNode(nextNode.label))
+                continue;
+
+            tree.addNode(nextNode.label);
+            tree.addEdge(minEdge.from.label, nextNode.label, minEdge.weight);
+
+            for (var edge: nextNode.getEdges()) {
+                if (!tree.containsNode(edge.to.label)) {
+                    edges.add(edge);
+                }
+            }
+        }
+
+        return tree;
+    }
+
+    public boolean containsNode(String label) {
+        return nodes.containsKey(label);
+    }
+
     public void print() {
         for (var node: nodes.values()){
             System.out.println(node + " is connected to " + Arrays.toString(node.getEdges().toArray(new Edge[0])));
         }
+    }
+
+    public boolean hasCycle() {
+        Set<Node> visited = new HashSet<>();
+        for (var node: nodes.values()) {
+            if (!visited.contains(node) && hasCycle(node, null, visited))
+                return  true;
+        }
+
+        return false;
+    }
+
+    private boolean hasCycle(Node node, Node parent, Set<Node> visited) {
+        visited.add(node);
+        for (var edge: node.getEdges()) {
+            if (edge.to == parent)
+                continue;
+
+            if (visited.contains(edge.to))
+                return true;
+
+            var result = hasCycle(edge.to, node, visited);
+            if (result)
+                return  true;
+        }
+
+        return false;
     }
 
     private Path buildPath(Map<Node, Node> previousNodes, Node toNode) {
