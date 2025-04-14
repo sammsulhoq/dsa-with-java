@@ -15,5 +15,11 @@ public class Main {
         selectionSort.sort(numbers);
         System.out.print("Selection Sort: ");
         System.out.println(Arrays.toString(numbers));
+
+        numbers = new int[]{7, 3, 1, 4, 6, 2, 3};
+        InsertionSort insertionSort = new InsertionSort();
+        insertionSort.sort(numbers);
+        System.out.print("Insertion Sort: ");
+        System.out.println(Arrays.toString(numbers));
     }
 }
