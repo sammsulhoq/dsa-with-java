@@ -42,6 +42,13 @@ public class Main {
         endTime = System.nanoTime();
         System.out.println(", Total time taken: " + (endTime - startTime) + " ns");
 
-        
+        startTime = System.nanoTime();
+        numbers = new int[]{7, 3, 1, 4, 6, 2, 3};
+        QuickSort quickSort = new QuickSort();
+        quickSort.sort(numbers);
+        System.out.print("Quick Sort: ");
+        System.out.print(Arrays.toString(numbers));
+        endTime = System.nanoTime();
+        System.out.println(", Total time taken: " + (endTime - startTime) + " ns");
     }
 }
