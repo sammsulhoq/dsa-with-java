@@ -4,28 +4,44 @@ import java.util.Arrays;
 
 public class Main {
     public static void main(String[] args) {
+        long startTime = System.nanoTime();
+
         int[] numbers = { 7, 3, 1, 4, 6, 2, 3 };
         BubbleSort bubbleSort = new BubbleSort();
         bubbleSort.sort(numbers);
         System.out.print("Bubble Sort: ");
-        System.out.println(Arrays.toString(numbers));
+        System.out.print(Arrays.toString(numbers));
 
+        long endTime = System.nanoTime();
+        System.out.println(", Total time taken: " + (endTime - startTime) + " ns");
+
+        startTime = System.nanoTime();
         numbers = new int[]{7, 3, 1, 4, 6, 2, 3};
         SelectionSort selectionSort = new SelectionSort();
         selectionSort.sort(numbers);
         System.out.print("Selection Sort: ");
-        System.out.println(Arrays.toString(numbers));
+        System.out.print(Arrays.toString(numbers));
+        endTime = System.nanoTime();
+        System.out.println(", Total time taken: " + (endTime - startTime) + " ns");
 
+        startTime = System.nanoTime();
         numbers = new int[]{7, 3, 1, 4, 6, 2, 3};
         InsertionSort insertionSort = new InsertionSort();
         insertionSort.sort(numbers);
         System.out.print("Insertion Sort: ");
-        System.out.println(Arrays.toString(numbers));
+        System.out.print(Arrays.toString(numbers));
+        endTime = System.nanoTime();
+        System.out.println(", Total time taken: " + (endTime - startTime) + " ns");
 
+        startTime = System.nanoTime();
         numbers = new int[]{7, 3, 1, 4, 6, 2, 3};
         MergeSort mergeSort = new MergeSort();
         mergeSort.sort(numbers);
         System.out.print("Merge Sort: ");
-        System.out.println(Arrays.toString(numbers));
+        System.out.print(Arrays.toString(numbers));
+        endTime = System.nanoTime();
+        System.out.println(", Total time taken: " + (endTime - startTime) + " ns");
+
+        
     }
 }
