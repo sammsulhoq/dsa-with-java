@@ -59,5 +59,14 @@ public class Main {
         System.out.print(Arrays.toString(numbers));
         endTime = System.nanoTime();
         System.out.println(", Total time taken: " + (endTime - startTime) + " ns");
+
+        startTime = System.nanoTime();
+        numbers = new int[]{7, 3, 1, 4, 6, 2, 3};
+        BucketSort bucketSort = new BucketSort();
+        bucketSort.sort(numbers, 3);
+        System.out.print("Bucket Sort: ");
+        System.out.print(Arrays.toString(numbers));
+        endTime = System.nanoTime();
+        System.out.println(", Total time taken: " + (endTime - startTime) + " ns");
     }
 }
