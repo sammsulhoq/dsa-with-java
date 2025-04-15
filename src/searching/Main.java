@@ -24,7 +24,7 @@ public class Main {
         numbers = new int[]{1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12};
         BinarySearch binarySearch = new BinarySearch();
         System.out.print("Binary Search => ");
-        System.out.print(", Result: " + binarySearch.searchIter(numbers, 6));
+        System.out.print("Result: " + binarySearch.searchIter(numbers, 6));
         endTime = System.nanoTime();
         System.out.print(" Time taken: [mid position] " + (endTime - startTime) + " ns");
 
@@ -36,6 +36,26 @@ public class Main {
 
         startTime = System.nanoTime();
         System.out.print(", Result: " + binarySearch.searchIter(numbers, 11));
+        endTime = System.nanoTime();
+        System.out.println(", [right half] " + (endTime - startTime) + " ns");
+
+        // Binary Search - Recursively
+        startTime = System.nanoTime();
+        numbers = new int[]{1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12};
+        binarySearch = new BinarySearch();
+        System.out.print("Binary Search => ");
+        System.out.print("Result: " + binarySearch.searchRecr(numbers, 6));
+        endTime = System.nanoTime();
+        System.out.print(" Time taken: [mid position] " + (endTime - startTime) + " ns");
+
+        startTime = System.nanoTime();
+        System.out.print(", Result: " + binarySearch.searchRecr(numbers, 2));
+        endTime = System.nanoTime();
+        System.out.print(", [left half] " + (endTime - startTime) + " ns");
+
+
+        startTime = System.nanoTime();
+        System.out.print(", Result: " + binarySearch.searchRecr(numbers, 11));
         endTime = System.nanoTime();
         System.out.println(", [right half] " + (endTime - startTime) + " ns");
     }
