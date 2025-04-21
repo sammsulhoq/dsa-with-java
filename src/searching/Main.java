@@ -1,7 +1,5 @@
 package searching;
 
-import java.util.Arrays;
-
 public class Main {
     public static void main(String[] args) {
         long startTime = System.nanoTime();
@@ -56,6 +54,46 @@ public class Main {
 
         startTime = System.nanoTime();
         System.out.print(", Result: " + binarySearch.searchRecr(numbers, 11));
+        endTime = System.nanoTime();
+        System.out.println(", [right half] " + (endTime - startTime) + " ns");
+
+        // Ternary Search - Iteratively
+        startTime = System.nanoTime();
+        numbers = new int[]{1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12};
+        TernarySearch ternarySearch = new TernarySearch();
+        System.out.print("Ternary Search => ");
+        System.out.print("Result: " + ternarySearch.searchIter(numbers, 4));
+        endTime = System.nanoTime();
+        System.out.print(" Time taken: [mid position] " + (endTime - startTime) + " ns");
+
+        startTime = System.nanoTime();
+        System.out.print(", Result: " + ternarySearch.searchIter(numbers, 2));
+        endTime = System.nanoTime();
+        System.out.print(", [left half] " + (endTime - startTime) + " ns");
+
+
+        startTime = System.nanoTime();
+        System.out.print(", Result: " + ternarySearch.searchIter(numbers, 11));
+        endTime = System.nanoTime();
+        System.out.println(", [right half] " + (endTime - startTime) + " ns");
+
+        // Ternary Search - Recursively
+        startTime = System.nanoTime();
+        numbers = new int[]{1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12};
+        ternarySearch = new TernarySearch();
+        System.out.print("Ternary Search => ");
+        System.out.print("Result: " + ternarySearch.serachRecr(numbers, 4));
+        endTime = System.nanoTime();
+        System.out.print(" Time taken: [mid position] " + (endTime - startTime) + " ns");
+
+        startTime = System.nanoTime();
+        System.out.print(", Result: " + ternarySearch.serachRecr(numbers, 2));
+        endTime = System.nanoTime();
+        System.out.print(", [left half] " + (endTime - startTime) + " ns");
+
+
+        startTime = System.nanoTime();
+        System.out.print(", Result: " + ternarySearch.serachRecr(numbers, 11));
         endTime = System.nanoTime();
         System.out.println(", [right half] " + (endTime - startTime) + " ns");
     }
