@@ -96,5 +96,25 @@ public class Main {
         System.out.print(", Result: " + ternarySearch.serachRecr(numbers, 11));
         endTime = System.nanoTime();
         System.out.println(", [right half] " + (endTime - startTime) + " ns");
+
+        // Jump Search
+        startTime = System.nanoTime();
+        numbers = new int[]{1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12};
+        JumpSearch jumpSearch = new JumpSearch();
+        System.out.print("Jump Search => ");
+        System.out.print("Result: " + jumpSearch.search(numbers, 4));
+        endTime = System.nanoTime();
+        System.out.print(" Time taken: [mid position] " + (endTime - startTime) + " ns");
+
+        startTime = System.nanoTime();
+        System.out.print(", Result: " + jumpSearch.search(numbers, 2));
+        endTime = System.nanoTime();
+        System.out.print(", [left half] " + (endTime - startTime) + " ns");
+
+
+        startTime = System.nanoTime();
+        System.out.print(", Result: " + jumpSearch.search(numbers, 11));
+        endTime = System.nanoTime();
+        System.out.println(", [right half] " + (endTime - startTime) + " ns");
     }
 }
