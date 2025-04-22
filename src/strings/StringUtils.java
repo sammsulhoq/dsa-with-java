@@ -17,4 +17,15 @@ public class StringUtils {
 
         return vowelCount;
     }
+
+    public static String reverse(String input) {
+        if (input == null)
+            return "";
+
+        StringBuilder reversed = new StringBuilder();
+        for (var i = input.length() - 1; i >= 0; i--)
+            reversed.append(input.charAt(i));
+
+        return reversed.toString();
+    }
 }
