@@ -1,5 +1,7 @@
 package strings;
 
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.Set;
 
 public class StringUtils {
@@ -27,5 +29,28 @@ public class StringUtils {
             reversed.append(input.charAt(i));
 
         return reversed.toString();
+    }
+
+    public static String reverseWords(String input) {
+        if (input == null)
+            return "";
+
+        String[] words = input.trim().split(" ");
+        StringBuilder reversed = new StringBuilder();
+
+        for (var i = words.length - 1; i >= 0; i--)
+            reversed.append(words[i]).append(" ");
+
+        return reversed.toString().trim();
+    }
+
+    public static String reverseWordsUsingCollection(String input) {
+        if (input == null)
+            return "";
+
+        String[] words = input.trim().split(" ");
+        Collections.reverse(Arrays.asList(words));
+
+        return String.join(" ", words);
     }
 }
