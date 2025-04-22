@@ -2,6 +2,7 @@ package strings;
 
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.Set;
 
 public class StringUtils {
@@ -71,7 +72,23 @@ public class StringUtils {
     public static boolean areRotations(String input1, String input2) {
         if (input1 == null || input2 == null)
             return false;
-        
+
         return ((input1.length() == input2.length()) && (input1 + input1).contains(input2));
+    }
+
+    public static String removeDuplicates(String input) {
+        if (input == null)
+            return "";
+
+        StringBuilder newString = new StringBuilder();
+        Set<Character> seen = new HashSet<>();
+        for (var ch: input.toCharArray()) {
+            if (!seen.contains(ch)) {
+                seen.add(ch);
+                newString.append(ch);
+            }
+        }
+
+        return newString.toString();
     }
 }

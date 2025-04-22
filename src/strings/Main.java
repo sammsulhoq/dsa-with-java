@@ -18,5 +18,7 @@ public class Main {
         input1 = "ABBA";
         input2 = "ABA";
         System.out.println("Checking Rotations -> Inputs: \"" + input1 + "\",\"" + input2 + "\" ==> Result: " + StringUtils.areRotations(input1, input2));
+
+        System.out.println("Unique characters -> Input: \"" + input + "\" ==> New string: " + StringUtils.removeDuplicates(input));
     }
 }
