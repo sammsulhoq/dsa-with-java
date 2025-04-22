@@ -53,4 +53,25 @@ public class StringUtils {
 
         return String.join(" ", words);
     }
+
+    /**
+     * Concatenating the first input with itself and then comparing it with second input
+     * verifies if the second one is rotation or not since it will be inside the concatenated
+     * result
+     * Also, both the string should be of same length
+     * e.g.: ABCD -> DABC
+     *            -> CDAB
+     *            -> BCDA
+     *            -> ABCD
+     *  ABCDABCD contains second input BCDA, thus proving that it's a rotation
+     * @param input1    String input a feed
+     * @param input2    String input to be checked for rotation
+     * @return  true if the second word is rotation of first otherwise returns false
+     */
+    public static boolean areRotations(String input1, String input2) {
+        if (input1 == null || input2 == null)
+            return false;
+        
+        return ((input1.length() == input2.length()) && (input1 + input1).contains(input2));
+    }
 }
