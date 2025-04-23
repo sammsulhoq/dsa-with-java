@@ -28,5 +28,11 @@ public class Main {
 
         input1 = "today is a great day!";
         System.out.println("Capitalize -> Input: \"" + input1 + "\" ==> New string: " + StringUtils.capitalize(input1));
+
+        input1 = "ABCD";
+        input2 = "BCDA";
+        System.out.println("Checking Anagrams -> Inputs: \"" + input1 + "\",\"" + input2 + "\" ==> Result: " + StringUtils.areAnagrams(input1, input2));
+
+        System.out.println("Checking Anagrams (Histogram) -> Inputs: \"" + input1 + "\",\"" + input2 + "\" ==> Result: " + StringUtils.areAnagramsUsingHistogram(input1, input2));
     }
 }
