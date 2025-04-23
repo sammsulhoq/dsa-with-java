@@ -118,4 +118,16 @@ public class StringUtils {
 
         return Collections.max(frequencies.entrySet(), Comparator.comparingInt(Map.Entry::getValue)).getKey();
     }
+
+    public static String capitalize(String input) {
+        if (input == null || input.trim().isEmpty())
+            return "";
+
+        String[] words = input.trim().replaceAll(" +", " ").split(" ");
+        for (var i = 0; i < words.length; i++) {
+            words[i] = words[i].substring(0, 1).toUpperCase() + words[i].substring(1).toLowerCase();
+        }
+
+        return String.join(" ", words);
+    }
 }

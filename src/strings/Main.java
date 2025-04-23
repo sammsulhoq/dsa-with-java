@@ -25,5 +25,8 @@ public class Main {
         System.out.println("Most repeated characters -> Input: \"" + input1 + "\" ==> New string: " + StringUtils.getMostRepeatedChar(input1));
 
         System.out.println("Most repeated characters (HashTable) -> Input: \"" + input1 + "\" ==> New string: " + StringUtils.getMostRepeatedCharUsingHashTable(input1));
+
+        input1 = "today is a great day!";
+        System.out.println("Capitalize -> Input: \"" + input1 + "\" ==> New string: " + StringUtils.capitalize(input1));
     }
 }
