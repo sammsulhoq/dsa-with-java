@@ -20,5 +20,10 @@ public class Main {
         System.out.println("Checking Rotations -> Inputs: \"" + input1 + "\",\"" + input2 + "\" ==> Result: " + StringUtils.areRotations(input1, input2));
 
         System.out.println("Unique characters -> Input: \"" + input + "\" ==> New string: " + StringUtils.removeDuplicates(input));
+
+        input1 = "Trees are beautiful!";
+        System.out.println("Most repeated characters -> Input: \"" + input1 + "\" ==> New string: " + StringUtils.getMostRepeatedChar(input1));
+
+        System.out.println("Most repeated characters (HashTable) -> Input: \"" + input1 + "\" ==> New string: " + StringUtils.getMostRepeatedCharUsingHashTable(input1));
     }
 }

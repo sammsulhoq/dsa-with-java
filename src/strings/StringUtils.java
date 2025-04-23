@@ -1,9 +1,6 @@
 package strings;
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 public class StringUtils {
     public static int countVowels(String input) {
@@ -90,5 +87,35 @@ public class StringUtils {
         }
 
         return newString.toString();
+    }
+
+    public static char getMostRepeatedChar(String input) {
+        final int ASCII_SIZE = 256;
+        int[] frequencies = new int[ASCII_SIZE];
+
+        for (var ch: input.toCharArray())
+            frequencies[ch]++;
+
+        int max = 0;
+        char result = ' ';
+        for (var i = 0; i < frequencies.length; i++)
+            if (frequencies[i] > max) {
+                max = frequencies[i];
+                result = (char) i;
+            }
+
+        return result;
+    }
+
+    public static char getMostRepeatedCharUsingHashTable(String input) {
+        Map<Character, Integer> frequencies = new HashMap<>();
+        for (var ch: input.toCharArray()) {
+            if (frequencies.containsKey(ch))
+                frequencies.replace(ch, frequencies.get(ch) + 1);
+            else
+                frequencies.put(ch, 1);
+        }
+
+        return Collections.max(frequencies.entrySet(), Comparator.comparingInt(Map.Entry::getValue)).getKey();
     }
 }
