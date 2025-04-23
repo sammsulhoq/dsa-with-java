@@ -168,4 +168,19 @@ public class StringUtils {
 
         return true;
     }
+
+    public static boolean isPalindrome(String input) {
+        if (input == null)
+            return false;
+
+        char[] characters = input.toCharArray();
+        int left = 0;
+        int right = characters.length - 1;
+        while (left != right) {
+            if (characters[left++] != characters[right--])
+                return false;
+        }
+
+        return true;
+    }
 }

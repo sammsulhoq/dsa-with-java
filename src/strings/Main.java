@@ -34,5 +34,8 @@ public class Main {
         System.out.println("Checking Anagrams -> Inputs: \"" + input1 + "\",\"" + input2 + "\" ==> Result: " + StringUtils.areAnagrams(input1, input2));
 
         System.out.println("Checking Anagrams (Histogram) -> Inputs: \"" + input1 + "\",\"" + input2 + "\" ==> Result: " + StringUtils.areAnagramsUsingHistogram(input1, input2));
+
+        input1 = "MADAM";
+        System.out.println("Palindrome -> Input: \"" + input1 + "\" ==> New string: " + StringUtils.isPalindrome(input1));
     }
 }
